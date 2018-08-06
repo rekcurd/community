@@ -67,7 +67,7 @@ class DruckerWorkerClientTest(DruckerWorkerTest):
         server.start()
         cls.server = server
         drucker_client_logger = SystemLogger(logger_name="test")
-        cls.client = DruckerWorkerClient(logger=drucker_client_logger, url='127.0.0.1:5000')
+        cls.client = DruckerWorkerClient(logger=drucker_client_logger, host='127.0.0.1:5000')
 
     @classmethod
     def tearDownClass(cls):
