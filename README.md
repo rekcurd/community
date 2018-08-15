@@ -10,7 +10,7 @@ Drucker is a microservice framework for serving a machine learning module. Druck
 - [Drucker-example](https://github.com/drucker/drucker-example): Example of how to use drucker.
 
 ## Requirements
-- Drucker v0.3.0
+- Drucker v0.3.1
 - Python 3.6
 - Kubernetes 1.9
 - MySQL 5.7
