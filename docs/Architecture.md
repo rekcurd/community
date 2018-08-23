@@ -21,7 +21,7 @@
 
 We confirmed the Kubernetes cluster built by [Rancher](https://rancher.com/) but you may be able to use Drucker on the existing Kubernetes cluster such as GKE and Amazon EKS.
 
-Drucker can manage the service level (e.g. development/staging/production) by using Kubernetes `namespace`, `node selector` and `affinity`. We keep the service level on the node server. For example, the Drucker Pods with `development` service level only run on the `development` node server. We also keep to avoid booting the same Drucker Pod in the same node server if possible.
+Drucker can manage the service level (e.g. development/beta/staging/sandbox/production) by using Kubernetes `namespace`, `node selector` and `affinity`. We keep the service level on the node server. For example, the Drucker Pods with `development` service level only run on the `development` node server. We also keep to avoid booting the same Drucker Pod in the same node server if possible.
 
 
 ## Load balancing
