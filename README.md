@@ -30,7 +30,7 @@ Drucker is a microservice framework for serving a machine learning module. Druck
   - Auto scaling
   - (WIP) Performance/Results check
 - Others
-  - Managing the service level (e.g. development/staging/production)
+  - Managing the service level (e.g. development/beta/staging/sandbox/production)
   - [WebUI](https://github.com/drucker/drucker-dashboard)
   - [SDK](https://github.com/drucker/drucker-client)
   - AB testing
