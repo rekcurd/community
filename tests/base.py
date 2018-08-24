@@ -38,11 +38,11 @@ class DruckerWorkerTest(unittest.TestCase):
 
 
 _prediction_value_map = {
-    Type.STRING: PredictResult('Drucker', 1.0, option="{}"),
-    Type.BYTES: PredictResult(b'\x8f\xfa;\xc8a\xa3T%', 1.0, option="{}"),
-    Type.ARRAY_INT: PredictResult([2, 3, 5, 7], [1.0, 1.0, 1.0, 1.0], option="{}"),
-    Type.ARRAY_FLOAT: PredictResult([0.78341155, 0.03166816, 0.92745938], [1.0, 1.0, 1.0], option="{}"),
-    Type.ARRAY_STRING: PredictResult(['Drucker', 'is', 'awesome'], [1.0, 1.0, 1.0], option="{}"),
+    Type.STRING: PredictResult('Drucker', 1.0, option={}),
+    Type.BYTES: PredictResult(b'\x8f\xfa;\xc8a\xa3T%', 1.0, option={}),
+    Type.ARRAY_INT: PredictResult([2, 3, 5, 7], [1.0, 1.0, 1.0, 1.0], option={}),
+    Type.ARRAY_FLOAT: PredictResult([0.78341155, 0.03166816, 0.92745938], [1.0, 1.0, 1.0], option={}),
+    Type.ARRAY_STRING: PredictResult(['Drucker', 'is', 'awesome'], [1.0, 1.0, 1.0], option={}),
 }
 
 
