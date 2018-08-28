@@ -71,17 +71,6 @@ class TestApiKubernetes(BaseTestCase):
         ).one_or_none()
         self.assertIsNotNone(kobj)
 
-        # Check Kubernetes dump files
-        aobj = Application.query.filter_by(
-            kubernetes_id=kobj.kubernetes_id).one_or_none()
-        if aobj is not None:
-            sobj = Service.query.filter_by(
-                application_id=aobj.application_id).first()
-            filepath = pathlib.Path(
-                DIR_KUBE_CONFIG, aobj.application_name,
-                f'{sobj.service_name}-deployment.json')
-            self.assertTrue(os.path.isfile(str(filepath)))
-
     def test_put(self):
         # Run a worker
         kobj = create_kube_obj()
