@@ -1,8 +1,11 @@
 import uuid
+import os
+import pathlib
 
 from kubernetes import client as k8s_client
 from kubernetes import config as k8s_config
 
+from drucker_dashboard.app.utils.env_loader import DIR_KUBE_CONFIG
 from drucker_dashboard.app.models import db, Kubernetes, Application, Service, Model
 
 from tests.drucker_dashboard.base import BaseTestCase
@@ -77,15 +80,23 @@ class TestApiKubernetes(BaseTestCase):
         # Check if the application is created correctly
         aobj = Application.query.filter_by(
             kubernetes_id=kubernetes_id).one_or_none()
+        application_name = aobj.application_name
         self.assertIsNotNone(aobj)
 
         # Check if the service is created correctly
         sobj = Service.query.filter_by(
             application_id=aobj.application_id).first()
+        service_name = sobj.service_name
         self.assertIsNotNone(sobj)
         response = self.client.put('/api/kubernetes/')
         self.assertEqual(200, response.status_code)
         self.assertIsNotNone(response)
+
+        # Check Kubernetes dump files
+        filepath = pathlib.Path(
+            DIR_KUBE_CONFIG, application_name,
+            f'{service_name}-deployment.json')
+        self.assertTrue(os.path.isfile(str(filepath)))
 
 
 class TestApiKubernetesId(BaseTestCase):
@@ -146,9 +157,9 @@ class TestApiKubernetesId(BaseTestCase):
         kobj = create_kube_obj()
         kubernetes_id = kobj.kubernetes_id
         self.client.put(f'/api/kubernetes/{kubernetes_id}')
-        # See if the application and service object are created correctly
-        aobj = db.session.query(Application).filter(Application.kubernetes_id == kubernetes_id,
-                                                      Application.application_name == 'drucker-test-app').one_or_none()
+        aobj = db.session.query(Application).filter(
+            Application.kubernetes_id == kubernetes_id,
+            Application.application_name == 'drucker-test-app').one_or_none()
         self.assertIsNotNone(aobj)
         sobj = db.session.query(Service).filter(Service.application_id == aobj.application_id).first()
         self.assertIsNotNone(sobj)
@@ -229,6 +240,7 @@ class TestApiKubernetesIdApplicationIdServices(BaseTestCase):
 
         aobj = create_app_obj(kobj.kubernetes_id)
         application_id = aobj.application_id
+        application_name = aobj.application_name
 
         old_confirm_date = aobj.confirm_date
         self.client.put(f'/api/kubernetes/{kobj.kubernetes_id}/applications/{aobj.application_id}/services')
@@ -236,7 +248,15 @@ class TestApiKubernetesIdApplicationIdServices(BaseTestCase):
         # A service should be created
         sobj = db.session.query(Service).filter(
             Service.application_id == application_id).first()
+        service_name = sobj.service_name
         self.assertIsNotNone(sobj)
+
+        # Check Kubernetes dump files
+        filepath = pathlib.Path(
+            DIR_KUBE_CONFIG, application_name,
+            f'{service_name}-deployment.json')
+        self.assertTrue(os.path.isfile(str(filepath)))
+
 
     def test_post(self):
         kobj = create_kube_obj()
@@ -246,13 +266,23 @@ class TestApiKubernetesIdApplicationIdServices(BaseTestCase):
         del args['app_name']
         # Use client to check the deployment is created
         k8s_config.load_kube_config(kobj.config_path)
-        self.client.post(f'/api/kubernetes/{kobj.kubernetes_id}/applications/{aobj.application_id}/services',
-                         data=args)
+        self.client.post(
+            f'/api/kubernetes/{kobj.kubernetes_id}/applications/{aobj.application_id}/services',
+            data=args)
         apps_v1 = k8s_client.AppsV1Api()
         deployments = apps_v1.list_namespaced_deployment(namespace=args['service_level'])
         deployment = deployments.items[0]
-        aobj_ = db.session.query(Application).filter(Application.application_id == application_id).one_or_none()
+        aobj_ = db.session.query(Application).filter(
+            Application.application_id == application_id).one_or_none()
         self.assertEqual(deployment.metadata.labels['app'], aobj_.application_name)
+
+        # Check Kubernetes dump files
+        sobj = Service.query.filter_by(
+            application_id=aobj_.application_id).first()
+        filepath = pathlib.Path(
+            DIR_KUBE_CONFIG, aobj_.application_name,
+            f'{sobj.service_name}-deployment.json')
+        self.assertTrue(os.path.isfile(str(filepath)))
 
 
 class TestApiKubernetesIdApplicationIdServiceId(BaseTestCase):
@@ -268,6 +298,8 @@ class TestApiKubernetesIdApplicationIdServiceId(BaseTestCase):
         kobj = create_kube_obj()
         aobj = create_app_obj(kobj.kubernetes_id)
         sobj = create_service_obj(aobj.application_id)
+        application_name = aobj.application_name
+        service_name = sobj.service_name
         namespace = sobj.service_level
         args = get_default_args()
         del args['app_name']
@@ -279,6 +311,13 @@ class TestApiKubernetesIdApplicationIdServiceId(BaseTestCase):
             data=args)
         # Retrieve k8s configuration with python client
         apps_v1 = k8s_client.AppsV1Api()
-        deployment = apps_v1.read_namespaced_deployment(name=WorkerConfiguration.deployment['metadata']['name'],
-                                                        namespace=namespace)
+        deployment = apps_v1.read_namespaced_deployment(
+            name=WorkerConfiguration.deployment['metadata']['name'],
+            namespace=namespace)
         self.assertEqual(deployment.spec.replicas, updated_replicas_default)
+
+        # Check Kubernetes dump files
+        filepath = pathlib.Path(
+            DIR_KUBE_CONFIG, application_name,
+            f'{service_name}-deployment.json')
+        self.assertTrue(os.path.isfile(str(filepath)))
