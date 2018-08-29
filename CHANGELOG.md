@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.3.3](https://github.com/drucker/drucker-parent/tree/v0.3.3) (2018-08-29)
+[Full Changelog](https://github.com/drucker/drucker-parent/compare/v0.3.2...v0.3.3)
+
+**Merged pull requests:**
+
+- Add test of `dashboard` PR\#7 [\#8](https://github.com/drucker/drucker-parent/pull/8) ([keigohtr](https://github.com/keigohtr))
+- Add sandbox env \(just comment change\) [\#7](https://github.com/drucker/drucker-parent/pull/7) ([keigohtr](https://github.com/keigohtr))
+- Add dashboard tests [\#6](https://github.com/drucker/drucker-parent/pull/6) ([jkw552403](https://github.com/jkw552403))
+
 ## [v0.3.2](https://github.com/drucker/drucker-parent/tree/v0.3.2) (2018-08-22)
 [Full Changelog](https://github.com/drucker/drucker-parent/compare/v0.3.1...v0.3.2)
 
