@@ -34,7 +34,7 @@ Because of the recent ML popularity, there are many useful tools/frameworks to h
     1. Performance/Results check
 1. Others
     1. Server setup
-    1. Managing the service level (e.g. development/staging/production)
+    1. Managing the service level (e.g. development/beta/staging/sandbox/production)
     1. Integrate into the existing services
     1. AB testing
     1. Managing all ML services

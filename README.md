@@ -30,7 +30,7 @@ Drucker is a microservice framework for serving a machine learning module. Druck
   - Auto scaling
   - (WIP) Performance/Results check
 - Others
-  - Managing the service level (e.g. development/staging/production)
+  - Managing the service level (e.g. development/beta/staging/sandbox/production)
   - [WebUI](https://github.com/drucker/drucker-dashboard)
   - [SDK](https://github.com/drucker/drucker-client)
   - AB testing
@@ -41,17 +41,31 @@ Drucker is a microservice framework for serving a machine learning module. Druck
 See [here](./docs).
 
 ## Unit test
-Discover test cases automatically.
+
+### Requirements
+- minikube v0.25.2 (later version upto v0.28.2 doesn't work well on macOS)
+
+### Execute test case all
 
 ```
-python -m unittest discover -v
+$ sh tests/drucker_dashboard/startup.sh
+$ python -m unittest discover
+$ sh tests/drucker_dashboard/cleanup.sh
 ```
 
-Execute test cases one by one
+### Execute test cases one by one
 
 ```
-python -m unittest tests/worker/test_peter_servicer.py
-python -m unittest tests/example/test_peter_client.py
+$ sh drucker-grpc-proto/run_codegen.sh
+$ sh drucker_client/drucker-grpc-proto/run_codegen.sh
+$ python -m unittest tests/drucker/test_worker_servicer.py
+$ python -m unittest tests/drucker_client/test_worker_client.py
+$ sh tests/drucker_dashboard/startup.sh
+$ python -m unittest tests/drucker_dashboard/test_application.py
+$ python -m unittest tests/drucker_dashboard/test_kubernetes.py
+$ python -m unittest tests/drucker_dashboard/test_model.py
+$ python -m unittest tests/drucker_dashboard/test_service.py
+$ sh tests/drucker_dashboard/cleanup.sh
 ```
 
 ## Support
