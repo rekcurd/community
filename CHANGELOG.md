@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.3.4](https://github.com/drucker/drucker-parent/tree/v0.3.4) (2018-10-03)
+[Full Changelog](https://github.com/drucker/drucker-parent/compare/v0.3.3...v0.3.4)
+
+**Closed issues:**
+
+- Write unit testing for `dashboard` [\#3](https://github.com/drucker/drucker-parent/issues/3)
+
+**Merged pull requests:**
+
+- Cleanup a test DB [\#9](https://github.com/drucker/drucker-parent/pull/9) ([keigohtr](https://github.com/keigohtr))
+
 ## [v0.3.3](https://github.com/drucker/drucker-parent/tree/v0.3.3) (2018-08-29)
 [Full Changelog](https://github.com/drucker/drucker-parent/compare/v0.3.2...v0.3.3)
 
