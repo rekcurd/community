@@ -17,7 +17,7 @@
 [submodule "dockerfiles"]
 	path = dockerfiles
 	url = https://github.com/drucker/dockerfiles.git
-	branch = master
+	branch = v0.2
 [submodule "externals/fluentd-kubernetes-daemonset"]
 	path = externals/fluentd-kubernetes-daemonset
 	url = https://github.com/fluent/fluentd-kubernetes-daemonset.git
