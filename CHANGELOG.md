@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.3.5](https://github.com/drucker/drucker-parent/tree/v0.3.5) (2018-11-07)
+[Full Changelog](https://github.com/drucker/drucker-parent/compare/v0.3.4...v0.3.5)
+
+**Merged pull requests:**
+
+- Add document for kubeadm [\#12](https://github.com/drucker/drucker-parent/pull/12) ([jkw552403](https://github.com/jkw552403))
+- Create CONTRIBUTING.md [\#11](https://github.com/drucker/drucker-parent/pull/11) ([syleeeee](https://github.com/syleeeee))
+- Create CODE\_OF\_CONDUCT.md [\#10](https://github.com/drucker/drucker-parent/pull/10) ([syleeeee](https://github.com/syleeeee))
+
 ## [v0.3.4](https://github.com/drucker/drucker-parent/tree/v0.3.4) (2018-10-03)
 [Full Changelog](https://github.com/drucker/drucker-parent/compare/v0.3.3...v0.3.4)
 
