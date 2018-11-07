@@ -24,3 +24,7 @@
 [submodule "externals/nghttpx-ingress-lb"]
 	path = externals/nghttpx-ingress-lb
 	url = https://github.com/zlabjp/nghttpx-ingress-lb.git
+[submodule "drucker_example"]
+	path = drucker_example
+	url = https://github.com/drucker/drucker-example.git
+	branch = master

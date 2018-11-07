@@ -10,7 +10,7 @@ Drucker is a microservice framework for serving a machine learning module. Druck
 - [Drucker-example](https://github.com/drucker/drucker-example): Example of how to use drucker.
 
 ## Requirements
-- Drucker v0.3.0
+- Drucker v0.3
 - Python 3.6
 - Kubernetes 1.9
 - MySQL 5.7
@@ -56,10 +56,6 @@ $ sh tests/drucker_dashboard/cleanup.sh
 ### Execute test cases one by one
 
 ```
-$ sh drucker-grpc-proto/run_codegen.sh
-$ sh drucker_client/drucker-grpc-proto/run_codegen.sh
-$ python -m unittest tests/drucker/test_worker_servicer.py
-$ python -m unittest tests/drucker_client/test_worker_client.py
 $ sh tests/drucker_dashboard/startup.sh
 $ python -m unittest tests/drucker_dashboard/test_application.py
 $ python -m unittest tests/drucker_dashboard/test_kubernetes.py
@@ -78,3 +74,4 @@ Give us `Issues` and `Pull requests`.
 - [yoquankara](https://github.com/yoquankara)
 - [Shimpei Yotsukura](https://github.com/shimpei-yotsukura)
 - [sugyan](https://github.com/sugyan)
+- [yuki-mt](https://github.com/yuki-mt)
