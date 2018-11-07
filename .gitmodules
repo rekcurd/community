@@ -10,6 +10,10 @@
 	path = drucker
 	url = https://github.com/drucker/drucker.git
 	branch = master
+[submodule "drucker_example"]
+	path = drucker_example
+	url = https://github.com/drucker/drucker-example.git
+	branch = master
 [submodule "drucker-grpc-proto"]
 	path = drucker-grpc-proto
 	url = https://github.com/drucker/drucker-grpc-proto.git
@@ -24,7 +28,3 @@
 [submodule "externals/nghttpx-ingress-lb"]
 	path = externals/nghttpx-ingress-lb
 	url = https://github.com/zlabjp/nghttpx-ingress-lb.git
-[submodule "drucker_example"]
-	path = drucker_example
-	url = https://github.com/drucker/drucker-example.git
-	branch = master
