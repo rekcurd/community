@@ -9,7 +9,7 @@ import numpy as np
 from werkzeug.datastructures import FileStorage
 
 from drucker_dashboard.app.core.drucker_dashboard_client import DruckerDashboardClient
-from drucker_client.core.drucker_worker_client import DruckerWorkerClient
+from drucker_client import DruckerWorkerClient
 from drucker_dashboard.app.models import db, Service
 from drucker_dashboard.app.logger.logger_jsonlogger import SystemLogger
 
