@@ -17,7 +17,7 @@
 [submodule "drucker-grpc-proto"]
 	path = drucker-grpc-proto
 	url = https://github.com/drucker/drucker-grpc-proto.git
-	branch = v0.3
+	branch = v0.4
 [submodule "dockerfiles"]
 	path = dockerfiles
 	url = https://github.com/drucker/dockerfiles.git
