@@ -1,8 +1,9 @@
-# Setup Kubernetes with Amazon EKS
-## Environments
+# Setup Drucker Environment with Amazon EKS
+## Setup Kubernetes with Amazon EKS
+### Environments
 * EKS version: eks.3
 
-## Steps
+### Steps
 
 Basically, you just need to follow [the official document](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html).  
 The diffrences are:
@@ -11,14 +12,14 @@ The diffrences are:
 - You need to use [our YAML file](https://github.com/drucker/drucker-parent/blob/master/config/amazon-eks-nodegroup.yaml) for CloudFormation to launch your worker nodes in `Step 3: Launch and Configure Amazon EKS Worker Nodes`.  
   The details are in the section below.
 
-### Edit and Upload YAML file to launch your worker nodes.
+#### Edit and Upload YAML file to launch your worker nodes.
 1. If you run `git clone` with SSH when you use drucker, replace `REPLACE_YOUR_OWN_SSH_KEY` with your own SSH private key in [YAML file](https://github.com/drucker/drucker-parent/blob/master/config/amazon-eks-nodegroup.yaml).  
    You can skip this step if you use public repository and run `git clone` with HTTPS
 2. Follow the instructions instead of the official documemnt Step 3-5 and 3-6.
     1. For **Choose a template**, select **Upload a template to Amazon S3.**
     2. Select the YAML file you edited and choose **Next.**
 
-# Install Metrics Server
+## Install Metrics Server
 You need to install metrics server for autoscaler to work.  
 Please run the following commands to set up metrics server.
 
@@ -29,11 +30,11 @@ $ git checkout refs/tags/v0.3.1
 $ kubectl create -f deploy/1.8+/
 ```
 
-# Install Ingress controller
-## Prerequisites
+## Install Ingress controller
+### Prerequisites
 - Domain owned by you (set to load balancer)
 
-## Steps
+### Steps
 For now, you can only access drucker services nghttpx Ingress.  
 Please follow instructions below to set up nghttpx Ingress Controller.
 
@@ -55,7 +56,7 @@ $ kubectl apply -f examples/proxyproto/
 
 Then, http requests to `*.<your-domain>` will reach to your EKS cluster.
 
-# Drucker
+## Drucker
 Please follow the Drucker part on this [page](https://github.com/drucker/drucker-parent/blob/master/docs/Installation.md) to install drucker and deploy your services.  
 
 When you add Kubernetes Host in drucker-dashboard, please refer the information.

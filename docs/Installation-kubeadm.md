@@ -1,15 +1,16 @@
-# Setup Kubernetes with kubeadm
-## Prerequisites
+# Setup Drucker Environment with kubeadm
+## Setup Kubernetes with kubeadm
+### Prerequisites
 1. This guide is tested on CentOS 7.4. Please check the [official guide](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) if you're using other OS like Ubuntu.
 2. Ensure the account has sudo privileges to run commands below.
 3. Only non-HA cluster(singler master cluster) is set up in this guide. Please refer to [this page](https://kubernetes.io/docs/setup/independent/high-availability/) if you need a HA cluster.
 4. Calico is run as the pod network add-on. Please follow the [official guide](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) if you prefer another network add-on.
 
-## Environments
+### Environments
 * Docker: 18.06.1.ce
 * kubeadm, kubectl, kubelet: 1.12.2
 
-## Steps
+### Steps
 Steps here are copied from Docker and Kubernetes offical sites. The details could be found in the following sites:
 * [Install Docker](https://docs.docker.com/install/linux/docker-ce/centos/)
 * [Install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
@@ -79,7 +80,7 @@ The `<master-ip>` could be replaced with the host name of the master node.
 
 If you lost the join command, use `kubeadm token create --print-join-command` on the master to get the join command but you might need to regenerate the token because the token only has 24-hour TTL. Please check the `kubeadm token` command [here](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/) for details.
 
-# Install Ingress controller
+## Install Ingress controller
 For now, you can only access drucker services nghttpx Ingress. Please follow instructions below to set up nghttpx Ingress Controller.
 
 ```bash
@@ -120,5 +121,5 @@ subjects:
     namespace: kube-system
 ```
 
-# Drucker
+## Drucker
 Please follow the Drucker part on this [page](https://github.com/drucker/drucker-parent/blob/master/docs/Installation.md) to install drucker and deploy your services.
