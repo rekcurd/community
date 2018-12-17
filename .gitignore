@@ -112,3 +112,4 @@ drucker_pb2_grpc.py
 db.test.sqlite3
 test-kube-config/
 tests/drucker_dashboard/models/
+config/amazon-eks-nodegroup.yaml

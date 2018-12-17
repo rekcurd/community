@@ -13,11 +13,18 @@ The diffrences are:
   The details are in the section below.
 
 #### Edit and Upload YAML file to launch your worker nodes.
-1. If you run `git clone` with SSH when you use drucker, replace `REPLACE_YOUR_OWN_SSH_KEY` with your own SSH private key in [YAML file](https://github.com/drucker/drucker-parent/blob/master/config/amazon-eks-nodegroup.yaml).  
+1. If you run `git clone` with SSH when you use drucker, replace `REPLACE_YOUR_OWN_SSH_KEY` with your own SSH private key in [autoscaling-group.yaml](https://github.com/drucker/drucker-parent/blob/master/config/autoscaling-group.yaml).
    You can skip this step if you use public repository and run `git clone` with HTTPS
-2. Follow the instructions instead of the official documemnt Step 3-5 and 3-6.
+2. Edit [env-list.txt](https://github.com/drucker/drucker-parent/blob/master/config/env-list.txt).
+    - If you want only development, staging and production environments for Drucker, delete beta and sandbox from the file (or comment out with `#`)
+3. Run [build_eks_nodegroup.py](https://github.com/drucker/drucker-parent/blob/master/config/build_eks_nodegroup.py)
+4. Follow the instructions instead of the official documemnt Step 3-5 and 3-6.
     1. For **Choose a template**, select **Upload a template to Amazon S3.**
-    2. Select the YAML file you edited and choose **Next.**
+    2. Select amazon-eks-nodegroup.yaml generated in [config directory](https://github.com/drucker/drucker-parent/blob/master/config) and choose **Next.**
+
+**Be careful that AutoScalingGroup will be created for each env,  
+so if your env-list.txt has all 5 environments, `5 * NodeAutoScalingGroupDesiredCapacity` nodes will be created.**
+
 
 ## Install Metrics Server
 You need to install metrics server for autoscaler to work.  

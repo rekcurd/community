@@ -12,10 +12,6 @@ Parameters:
     Type: AWS::EC2::Image::Id
     Description: AMI id for the node instances.
 
-  NodeImageId:
-    Type: AWS::EC2::Image::Id
-    Description: AMI id for the node instances.
-
   ModelNodePath:
     Type: String
     Default: /mnt/drucker-model
@@ -110,17 +106,19 @@ Parameters:
 
   NodeAutoScalingGroupMinSize:
     Type: Number
-    Description: Minimum size of Node Group ASG.
+    Description: Minimum size of Node Group ASG. Be careful that ASGs for each env will be created and this size is for each group.
     Default: 1
 
   NodeAutoScalingGroupMaxSize:
     Type: Number
-    Description: Maximum size of Node Group ASG. Set to at least 1 greater than NodeAutoScalingGroupDesiredCapacity.
+    Description: |
+      Maximum size of Node Group ASG. Set to at least 1 greater than NodeAutoScalingGroupDesiredCapacity.
+      Be careful that ASGs for each env will be created and this size is for each group.
     Default: 4
 
   NodeAutoScalingGroupDesiredCapacity:
     Type: Number
-    Description: Desired capacity of Node Group ASG.
+    Description: Desired capacity of Node Group ASG. Be careful that ASGs for each env will be created and this size is for each group.
     Default: 3
 
   NodeVolumeSize:
@@ -130,11 +128,6 @@ Parameters:
 
   ClusterName:
     Description: The cluster name provided when the cluster was created. If it is incorrect, nodes will not be able to join the cluster.
-    Type: String
-
-  BootstrapArguments:
-    Description: Arguments to pass to the bootstrap script. See files/bootstrap.sh in https://github.com/awslabs/amazon-eks-ami
-    Default: ""
     Type: String
 
   NodeGroupName:
@@ -174,7 +167,6 @@ Metadata:
           - NodeImageId
           - NodeVolumeSize
           - KeyName
-          - BootstrapArguments
       -
         Label:
           default: "Worker Network Configuration"
@@ -291,78 +283,14 @@ Resources:
       ToPort: 443
       FromPort: 443
 
-  NodeGroup:
-    Type: AWS::AutoScaling::AutoScalingGroup
-    Properties:
-      DesiredCapacity: !Ref NodeAutoScalingGroupDesiredCapacity
-      LaunchConfigurationName: !Ref NodeLaunchConfig
-      MinSize: !Ref NodeAutoScalingGroupMinSize
-      MaxSize: !Ref NodeAutoScalingGroupMaxSize
-      VPCZoneIdentifier:
-        !Ref Subnets
-      Tags:
-      - Key: Name
-        Value: !Sub "${ClusterName}-${NodeGroupName}-Node"
-        PropagateAtLaunch: 'true'
-      - Key: !Sub 'kubernetes.io/cluster/${ClusterName}'
-        Value: 'owned'
-        PropagateAtLaunch: 'true'
-    UpdatePolicy:
-      AutoScalingRollingUpdate:
-        MaxBatchSize: '1'
-        MinInstancesInService: !Ref NodeAutoScalingGroupDesiredCapacity
-        PauseTime: 'PT5M'
-
   ModelStorage:
     Type: 'AWS::S3::Bucket'
-    Properties: 
+    Properties:
       Tags:
       - Key: 'Name'
         Value: 'drucker-ml-model'
 
-  NodeLaunchConfig:
-    Type: AWS::AutoScaling::LaunchConfiguration
-    Properties:
-      AssociatePublicIpAddress: 'true'
-      IamInstanceProfile: !Ref NodeInstanceProfile
-      ImageId: !Ref NodeImageId
-      InstanceType: !Ref NodeInstanceType
-      KeyName: !Ref KeyName
-      SecurityGroups:
-      - !Ref NodeSecurityGroup
-      BlockDeviceMappings:
-        - DeviceName: /dev/xvda
-          Ebs:
-            VolumeSize: !Ref NodeVolumeSize
-            VolumeType: gp2
-            DeleteOnTermination: true
-      UserData:
-        Fn::Base64: !Sub
-          - |
-            #!/bin/bash
-            set -o xtrace
-            /etc/eks/bootstrap.sh ${ClusterName} ${BootstrapArguments}
-            /opt/aws/bin/cfn-signal --exit-code $? \
-                     --stack  ${AWS::StackName} \
-                     --resource NodeGroup  \
-                     --region ${AWS::Region}
-            mkdir -p /root/.ssh
-            cat <<EoF > /root/.ssh/id_rsa
-            REPLACE_YOUR_OWN_SSH_KEY
-            EoF
-            chmod 600 /root/.ssh/id_rsa
-            cat <<EoF > /root/.ssh/known_hosts
-            github.com,192.30.255.113 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
-            192.30.255.112 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
-            EoF
-            yum install -y golang fuse git
-            export GOPATH=$HOME/go
-            go get github.com/kahing/goofys
-            go install github.com/kahing/goofys
-            mkdir -p ${ModelNodePath}
-            $GOPATH/bin/goofys ${BucketName} ${ModelNodePath}
-          - { BucketName: !Ref ModelStorage }
-    DependsOn: ModelStorage
+{{ASG}}
 
 Outputs:
   NodeInstanceRole:

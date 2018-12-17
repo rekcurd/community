@@ -1,0 +1,5 @@
+Development
+Sandbox
+Beta
+Staging
+Production
