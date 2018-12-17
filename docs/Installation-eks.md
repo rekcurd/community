@@ -9,11 +9,11 @@ Basically, you just need to follow [the official document](https://docs.aws.amaz
 The diffrences are:
 
 - You do not need `Step 4: Launch a Guest Book Application`.
-- You need to use [our YAML file](https://github.com/drucker/drucker-parent/blob/master/config/amazon-eks-nodegroup.yaml) for CloudFormation to launch your worker nodes in `Step 3: Launch and Configure Amazon EKS Worker Nodes`.  
+- You need to use [our YAML file](https://github.com/drucker/drucker-parent/blob/master/config) for CloudFormation to launch your worker nodes in `Step 3: Launch and Configure Amazon EKS Worker Nodes`.  
   The details are in the section below.
 
 #### Edit and Upload YAML file to launch your worker nodes.
-1. If you run `git clone` with SSH when you use drucker, replace `REPLACE_YOUR_OWN_SSH_KEY` with your own SSH private key in [autoscaling-group.yaml](https://github.com/drucker/drucker-parent/blob/master/config/autoscaling-group.yaml).
+1. If you run `git clone` with SSH when you use drucker, replace `REPLACE_YOUR_OWN_SSH_KEY` with your own SSH private key in [autoscaling-group.yaml](https://github.com/drucker/drucker-parent/blob/master/config/autoscaling-group.yaml).  
    You can skip this step if you use public repository and run `git clone` with HTTPS
 2. Edit [env-list.txt](https://github.com/drucker/drucker-parent/blob/master/config/env-list.txt).
     - If you want only development, staging and production environments for Drucker, delete beta and sandbox from the file (or comment out with `#`)
