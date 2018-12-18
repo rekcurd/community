@@ -2,6 +2,9 @@
 ## Setup Kubernetes with Amazon EKS
 ### Environments
 * EKS version: eks.3
+* Kubernetes version: 1.10
+* Drucker version: 0.4.2
+* Drucker Dashboard version: 0.3.8
 
 ### Steps
 
@@ -48,7 +51,7 @@ Please follow instructions below to set up nghttpx Ingress Controller.
 1. Run the commands
 
 ```bash
-$ git clone https://github.com/zlabjp/nghttpx-ingress-lb.git
+$ git clone -b release-0.35 https://github.com/zlabjp/nghttpx-ingress-lb.git
 $ cd nghttpx-ingress-lb
 # ELB will be created in the same region as your EKS cluster
 $ kubectl apply -f examples/proxyproto/
