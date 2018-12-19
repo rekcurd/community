@@ -121,4 +121,7 @@ subjects:
 ```
 
 # Drucker
-Please follow the Drucker part on this [page](https://github.com/drucker/drucker-parent/blob/master/docs/Installation.md) to install drucker and deploy your services.
+Please follow the Drucker part on the below.
+- [Rekcurd](https://github.com/rekcurd/drucker)
+- [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard)
+- [Rekcurd-client](https://github.com/rekcurd/drucker-client)

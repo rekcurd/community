@@ -1,34 +1,10 @@
-# Installation
+# Setup manual for Rancher Kubernetes
 Table of Contents.
 
-1. [Drucker](https://github.com/drucker/drucker)
-1. [Drucker-dashboard](https://github.com/drucker/drucker-dashboard)
-1. [Drucker-client](https://github.com/drucker/drucker-client)
 1. [Setup Rancher for Kubernetes](#setup-rancher-for-kubernetes)
 1. [Create docker image](#create-docker-image)
 1. [gRPC Load Balancing on Rancher](#grpc-load-balancing-on-rancher)
 1. [Setup fluentd](#setup-fluentd)
-1. [Deploy Drucker service to Kubernetes](#deploy-drucker-service-to-kubernetes)
-1. [Access Drucker service on Kubernetes](#access-drucker-service-on-kubernetes)
-1. [Upload model](#upload-model)
-1. [Switch model](#switch-model)
-1. [Edit service configurations](#edit-service-configurations)
-1. [AB test](#ab-test)
-
----
-
-## Drucker
-https://github.com/drucker/drucker
-
----
-
-## Drucker-dashboard
-https://github.com/drucker/drucker-dashboard
-
----
-
-## Drucker-client
-https://github.com/drucker/drucker-client
 
 ---
 
@@ -136,77 +112,18 @@ On Rancher dashboard
 #### Boot nghttpx Ingress Controller
 1. "git clone" [nghttpx Ingress Controller](https://github.com/zlabjp/nghttpx-ingress-lb).
 1. Go to "Kubernetes Dashboard" via Rancher. Set "namespace" to "kube-system".
-1. Run below files
-    1. ./examples/default-backend.yaml
-    1. ./examples/default-backend-svc.yaml
-    1. ./examples/default/service-account.yaml
-    1. ./examples/daemonset/as-daemonset.yaml
+1. Run below files by `kubectl` or apply them on Kubernetes dashboard.
+
+```bash
+$ kubectl apply -f ./examples/default-backend.yaml
+$ kubectl apply -f ./examples/default-backend-svc.yaml
+$ kubectl apply -f ./examples/service-account.yaml
+$ kubectl apply -f ./examples/as-daemonset.yaml
+```
 
 ---
 
 ## Setup fluentd
 [fluentd](https://github.com/fluent/fluentd-kubernetes-daemonset) is officially available on Kubernetes. You can forward the log messages to the server you specify just printing it to stdout/stderr.
-
----
-
-## Deploy Drucker service to Kubernetes
-You can deploy your Docker service via drucker dashboard.
-
-Download or save a Kubernetes access token. If you use "Rancher", access "Kubernetes CLI" and click "Generate Config". After that click "Copy to Clipboard" and save it to the file.
-
-<img src="./img/rancher-kubernetes-config.png" width="480">
-
-Access to Drucker dashboard and click "Kubernetes" on a head menu. You can add your Kubernetes cluster by "Add Host". `Name` is display name for this dashboard. `Host Config File` must be set your Kubernetes access token file. `DNS Name` is your reserved DNS name. `Database` is MySQL configurations which stores model assignment of your Drucker service. `Model Storage` is the place your model store. `/mnt/drucker-model` is the default place as a mounted online volume.
-
-<img src="./img/dashboard-add-kube-host.png" width="480">
-
-On the top page (e.g. `http://localhost/application`), click "Add Application" and choose `Kubernetes` from "Application Type". Specify the configurations.
-
-<img src="./img/dashboard-add-app.png" width="480">
-
----
-
-## Access Drucker service on Kubernetes
-You can access your Drucker service.
-
-Your Drucker service can be accessed at `http://<app.name>-<app.service.level>.<your.dns>`.
-
----
-
-## Upload model
-You can upload your latest ML model via Drucker dashboard.
-
-Access to Drucker dashboard and open your application page (e.g. `http://localhost/applications/1/deploy`). "Add Model" is that you can upload your latest ML model to your Drucker service. "Model File" must be set your ML model. "Name" is a display name of this dashboard.
-
-<img src="./img/dashboard-add-model.png" width="480">
-
----
-
-## Switch model
-You can swith a ML model on your Drucker service via Drucker dashboard.
-
-Access to Drucker dashboard and open your application page (e.g. `http://localhost/applications/1/deploy`). "Switch Models" is that you can switch the model of your Drucker service. After Switching model, your Drucker service is automatically rolling updated by Kubernetes.
-
-**Default**
-
-<img src="./img/dashboard-switch-model-before.png" width="480">
-
-**Switch mode**
-
-<img src="./img/dashboard-switch-model-after.png" width="480">
-
----
-
-## Edit service configurations
-You can edit your existing Kubernetes services via Drucker dashboard.
-
-Access to Drucker dashboard and open your application page (e.g. `http://localhost/applications/1/deploy`). Click the service name and you can edit the configuration (e.g. CPU request, scaling policies) of your Drucker service. If you click "Save Service", your Drucker service is automatically rolling updated by Kubernetes. If you want to do a rolling update without changing the configurations, just edit "Memo" and click "Save Service", then rolling update is executed.
-
----
-
-## AB test
-You can create AB test via Drucker dashboard.
-
-Access to Drucker dashboard and open your application page (e.g. `http://localhost/applications/1/deploy`). Click "Add Service" and select an appropriate "Service Level" to run AB test. You can launch multiple services with different configurations at the same service level. Note that Drucker do not support analysis. If you want to analyze the differences of each configuration, you must print the information necessary on your Drucker service and analyze them by yourself.
 
 ---
