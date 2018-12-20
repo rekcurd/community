@@ -31,10 +31,10 @@ This section is the setup manual for [Rancher](https://rancher.com/) version 1.6
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `cattle` /*!40100 DEFAULT CHARACTER SET utf8 */;
 ```
 
-You must have a DDL privilege for the node servers.
+You must assign the node servers a DDL privilege.
 
 #### Rancher server settings
-Set <mysql-host>, <port>, <user>, <password> and <IP_of_the_Node>. <IP_of_the_Node> is the self IP address which runs on.
+Set `<mysql-host>`, `<port>`, `<user>`, `<password>` and `<IP_of_the_Node>`. `<IP_of_the_Node>` is the self IP address which runs on.
 
 ```bash
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
