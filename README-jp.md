@@ -47,21 +47,13 @@ Rekcurdは機械学習モジュールの運用のためのソフトウェア群�
 - Kubernetes 1.9~
 - MySQL 5.7
 - Online storage (e.g. AWS S3, GCS, WebDAV, ...)
+- DNS
 - (If necessary) Private Docker registry
-- (If necessary) Private git repository (e.g. GitHub Enterprise, GitLab)
+- (If necessary) Private git repository (e.g. GitHub Enterprise, GitLab, ...)
 
 
 ## Installation
-### Setup Kubernetes (if necessary)
-- [Rancher Kubernetes](./docs/Installation-rancher.md)
-- [kubeadm Kubernetes](./docs/Installation-kubeadm.md)
-- GKE Kubernetes (TBD)
-- EKS Kubernetes (TBD)
-
-### Setup Rekcurd software
-- [Rekcurd](https://github.com/rekcurd/drucker)
-- [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard)
-- [Rekcurd-client](https://github.com/rekcurd/drucker-client)
+See [docs](./docs/).
 
 
 ## Roadmap
@@ -103,6 +95,7 @@ Give us **Star**, **Issues** and **Pull requests**!
 - [Twitter](https://twitter.com/rekcurd)
 - [Facebook](https://www.facebook.com/rekcurd/)
 - [Slack](https://rekcurd.slack.com/)
+  - Join [rekcurd.slack.com](https://join.slack.com/t/rekcurd/shared_invite/enQtNTA4NDU3ODAzMzgwLTVhNWYyMTUwOTQ2NGZjMzAzNzYzNTZlZDYzY2ViMjVlOWExY2EwYmRlMDhhMDE3ZmNlNGE2Nzk4NTYzZjAwOTM)
 - [Google group](https://groups.google.com/forum/?hl=ja#!forum/rekcurd-dev)
 
 ## Contributors

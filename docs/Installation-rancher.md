@@ -2,9 +2,7 @@
 Table of Contents.
 
 1. [Rancher installation](#rancher-installation)
-1. [Docker image creation](#docker-image-creation)
 1. [gRPC Load Balancing](#grpc-load-balancing)
-1. [fluentd installation](#fluentd-installation)
 
 ## Prerequisites
 - CentOS 7.4
@@ -16,7 +14,7 @@ Table of Contents.
 ---
 
 ## Rancher installation
-This section is the setup manual for [Rancher](https://rancher.com/) version 1.6. You can follow the official guide [here](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/). If you want to install Rancher version 2.x, you can follow the guide [here](https://rancher.com/docs/rancher/v2.x/en/installation/). We recommend to use Rancher 2.x.
+This section is the setup manual for [Rancher](https://rancher.com/) version 1.6. You can follow the official guide [here](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/). If you want to install Rancher version 2.x, you can follow the guide [here](https://rancher.com/docs/rancher/v2.x/en/installation/). Since this document is for Rancher 1.6, we recommend to use Rancher 2.x.
 
 ### HA configurations
 #### Rancher server specs
@@ -81,65 +79,6 @@ sudo systemctl enable docker
 1. Click "Add Label" and set to "key=host" and "value=development". If you want to add a node for "staging", set "value" to "staging".
 1. Copy the script on the above page and run it on client nodes.
 
-#### Assign DNS
-We uses Kubernetes's hostname routing via ingress to access the services which run on Kubernetes. Keep DNS and assigned it to the Kubernetes cluster nodes. Or create a l4/l7 load balancer and assign DNS to them.
-
-#### Mount online storage
-We uses an online storage (e.g. AWS S3, GCS, WebDAV) as the storage of ML models. In our usage, we mounts it on `/mnt/drucker-model` on every cluster nodes. Rekcurd pod will mount the node's that volume to pod's `/mnt/drucker-model`.
-
-#### Add git ssh
-If you use a private git repository like GitHub enterprise, you need to add your credentials to `/root/.ssh/` on every cluster nodes. Rekcurd pod will mount the node's that volume to pod's `/root/.ssh`.
-
----
-
-## Docker image creation
-Kubernetes uses a container image. The simplest docker image is available on [Docker Hub](https://hub.docker.com/r/rekcurd/rekcurd) (`rekcurd/rekcurd:v0.2.1`).
-
-If you want to use your own docker image, please import our [Dockerfile](https://github.com/rekcurd/dockerfiles).
-
----
-
-## Namespace creation
-We uses these namespace for Rekcurd. These values are also used as Kubernetes cluster node label.
-
-- development
-- staging
-- production
-- beta
-- sandbox
-
-### Install namespaces
-Apply the code below or upload them via "Kubernetes Dashboard".
-
-```bash
-$ cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: development
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: beta
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: staging
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: sandbox
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: production
-EOF
-```
-
 ---
 
 ## gRPC Load Balancing
@@ -162,8 +101,3 @@ $ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/m
 $ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/default/service-account.yaml
 $ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/daemonset/as-daemonset.yaml
 ```
-
----
-
-## fluentd installation
-We uses [fluentd](https://github.com/fluent/fluentd-kubernetes-daemonset) to aggregate the logs. After installing "fluentd daemonset" on Kubernetes, you can forward the logs to the server you specify by printing to stdout/stderr.

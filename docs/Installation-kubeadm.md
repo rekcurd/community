@@ -71,48 +71,6 @@ The `<master-ip>` could be replaced with the host name of the master node.
 
 If you lost the join command, use `kubeadm token create --print-join-command` on the master to get the join command but you might need to regenerate the token because the token only has 24-hour TTL. Please check the `kubeadm token` command [here](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/) for details.
 
-
-## Namespace creation
-We uses these namespace for Rekcurd. These values are also used as Kubernetes cluster node label.
-
-- development
-- staging
-- production
-- beta
-- sandbox
-
-### Install namespaces
-Apply the code below or upload them via "Kubernetes Dashboard".
-
-```bash
-$ cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: development
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: beta
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: staging
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: sandbox
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: production
-EOF
-```
-
 ## Install Ingress controller
 For now, you can only access drucker services nghttpx Ingress. Please follow instructions below to set up nghttpx Ingress Controller.
 
@@ -153,12 +111,3 @@ subjects:
     name: ingress
     namespace: kube-system
 ```
-
-## fluentd installation
-We uses [fluentd](https://github.com/fluent/fluentd-kubernetes-daemonset) to aggregate the logs. After installing "fluentd daemonset" on Kubernetes, you can forward the logs to the server you specify by printing to stdout/stderr.
-
-## Rekcurd
-Please follow the Rekcurd part on the below.
-- [Rekcurd](https://github.com/rekcurd/drucker)
-- [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard)
-- [Rekcurd-client](https://github.com/rekcurd/drucker-client)
