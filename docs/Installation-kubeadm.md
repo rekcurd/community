@@ -15,9 +15,7 @@ Steps here are copied from Docker and Kubernetes offical sites. The details coul
 * [Install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
 * [Create a single master cluster with kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
 
-**Install and run Docker**
-
-
+### Install and run Docker
 ```bash
 $ sudo yum install -y yum-utils \
   device-mapper-persistent-data \
@@ -29,9 +27,7 @@ $ sudo yum install -y docker-ce
 $ sudo systemctl enable docker && sudo systemctl start docker
 ```
 
-**Install and run kubeadm**
-
-
+### Install and run kubeadm
 Read the `Before you begin` section on this [page](https://kubernetes.io/docs/setup/independent/install-kubeadm/) to check your environment and run:
 
 ```bash
@@ -48,9 +44,7 @@ $ sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 $ sudo systemctl enable kubelet && sudo systemctl start kubelet
 ```
 
-**Master initialization**
-
-
+### Master initialization
 Please run the following commands on the master node and keep the join command logged in `kubeadm init` command.
 ```bash
 # Run command below and save the join command in the logs
@@ -65,9 +59,7 @@ $ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernete
 $ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 ```
 
-**Joining your nodes**
-
-
+### Joining your nodes
 On each your node(non-master), run
 ```bash
 # Use the command saved in the last step
@@ -79,7 +71,49 @@ The `<master-ip>` could be replaced with the host name of the master node.
 
 If you lost the join command, use `kubeadm token create --print-join-command` on the master to get the join command but you might need to regenerate the token because the token only has 24-hour TTL. Please check the `kubeadm token` command [here](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/) for details.
 
-# Install Ingress controller
+
+## Namespace creation
+We uses these namespace for Rekcurd. These values are also used as Kubernetes cluster node label.
+
+- development
+- staging
+- production
+- beta
+- sandbox
+
+### Install namespaces
+Apply the code below or upload them via "Kubernetes Dashboard".
+
+```bash
+$ cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: beta
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sandbox
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+EOF
+```
+
+## Install Ingress controller
 For now, you can only access drucker services nghttpx Ingress. Please follow instructions below to set up nghttpx Ingress Controller.
 
 ```bash
@@ -120,8 +154,11 @@ subjects:
     namespace: kube-system
 ```
 
-# Drucker
-Please follow the Drucker part on the below.
+## fluentd installation
+We uses [fluentd](https://github.com/fluent/fluentd-kubernetes-daemonset) to aggregate the logs. After installing "fluentd daemonset" on Kubernetes, you can forward the logs to the server you specify by printing to stdout/stderr.
+
+## Rekcurd
+Please follow the Rekcurd part on the below.
 - [Rekcurd](https://github.com/rekcurd/drucker)
 - [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard)
 - [Rekcurd-client](https://github.com/rekcurd/drucker-client)

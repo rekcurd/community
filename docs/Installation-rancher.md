@@ -1,15 +1,15 @@
-# Setup manual for Rancher Kubernetes
+# Setup Kubernetes with Rancher
 Table of Contents.
 
-1. [Setup Rancher for Kubernetes](#setup-rancher-for-kubernetes)
-1. [Create docker image](#create-docker-image)
-1. [gRPC Load Balancing on Rancher](#grpc-load-balancing-on-rancher)
-1. [Setup fluentd](#setup-fluentd)
+1. [Rancher installation](#rancher-installation)
+1. [Docker image creation](#docker-image-creation)
+1. [gRPC Load Balancing](#grpc-load-balancing)
+1. [fluentd installation](#fluentd-installation)
 
 ---
 
-## Setup Rancher for Kubernetes
-If you already use Kubernetes such as GKE (Google Kubernetes Engine) or Amazon EKS (Amazon Elastic Container Service for Kubernetes) or minikube, skip here. We introduce you [Rancher](https://rancher.com/) as known as a container management system. You can refer the official installation guide [here](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/).
+## Rancher installation
+This section is the setup manual for [Rancher](https://rancher.com/) version 1.6. You can follow the official guide [here](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/). If you want to install Rancher version 2.x, you can follow the guide [here](https://rancher.com/docs/rancher/v2.x/en/installation/). We recommend to use Rancher 2.x.
 
 ### Environments
 - CentOS 7.4
@@ -18,24 +18,24 @@ If you already use Kubernetes such as GKE (Google Kubernetes Engine) or Amazon E
 - MySQL 5.7
 
 ### HA configurations
-#### Rancher server
+#### Rancher server specs
 - HA nodes (a minimum of 3 nodes is required):
   - CentOS 7
   - 8GB RAM instance
 - MySQL 5.7
 - DNS
 
-##### MySQL
-```
+#### MySQL
+```mysql
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `cattle` /*!40100 DEFAULT CHARACTER SET utf8 */;
 ```
 
 You must have a DDL privilege for the node servers.
 
-##### HA node setting
-Specify <mysql-host>, <port>, <user>, <password> and <IP_of_the_Node>. <IP_of_the_Node> below is the IP address which runs on.
+#### Rancher server settings
+Set <mysql-host>, <port>, <user>, <password> and <IP_of_the_Node>. <IP_of_the_Node> is the self IP address which runs on.
 
-```
+```bash
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum -y makecache fast
 sudo yum -y install yum-versionlock
@@ -48,23 +48,23 @@ sudo docker run -d --restart=unless-stopped -p 8080:8080 -p 9345:9345 rancher/se
 
 After 60 seconds, Rancher dashboard is available on `http://localhost:8080/`
 
-##### Setup Rancher
-###### DNS
+### Setup Rancher
+#### DNS
 Create a VIP or load balancer for node servers and assign DNS to it. Then go to "Admin" -> "Settings" on Rancher dashboard and set DNS to "Host Registration URL".
 
-###### Activate Kubernetes
+#### Activate Kubernetes
 Go to "Add from Catalog" and activate Kubernetes with a configuration of "Enable Rancher Ingress Controller = False".
 
-###### Confirmation
+#### Wrap up
 Go to "Admin" -> "High Availability" and confirm the status of HA clusters.
 
 
-#### Rancher agent
-- Client nodes
+### Setup Kubernetes cluster node
+- Cluster nodes
   - CentOS 7
   - 8GB RAM instance
 
-##### Client node setting
+#### Cluster node settings
 ```
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum -y makecache fast
@@ -75,33 +75,76 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-##### Add node to a cluster
+#### Join node to Kubernetes cluster
 1. Go to "Infrastracture" -> "Host" -> "Add Host" -> "Custom" on Rancher dashboard.
 1. Click "Add Label" and set to "key=host" and "value=development". If you want to add a node for "staging", set "value" to "staging".
 1. Copy the script on the above page and run it on client nodes.
 
-##### DNS
-Every client nodes can be the endpoint of Kubernetes ingress. Create a VIP or load balancer for client nodes and assign DNS to it. Then your Drucker service can be accessed at `http://<app.name>-<app.service.level>.<your.dns>`.
+#### Assign DNS
+We uses Kubernetes's hostname routing via ingress to access the services which run on Kubernetes. Keep DNS and assigned it to the Kubernetes cluster nodes. Or create a l4/l7 load balancer and assign DNS to them.
 
-##### Mount an online storage
-Mount your online storage (e.g. AWS S3, EBS, GCS, WebDAV) on the nodes. As a default configuration, we use `/mnt/drucker-model` as a mounted online volume and mount node's `/mnt/drucker-model` to pod's `/mnt/drucker-model`.
+#### Mount online storage
+We uses an online storage (e.g. AWS S3, GCS, WebDAV) as the storage of ML models. In our usage, we mounts it on `/mnt/drucker-model` on every cluster nodes. Rekcurd pod will mount the node's that volume to pod's `/mnt/drucker-model`.
 
-##### (OPTION) Add git ssh
-Add your git ssh to `/root/.ssh/` on the nodes if you use your private git repository. When you boot your Drucker service via Drucker dashboard, we mount node's `/root/.ssh` to pod's `/root/.ssh`.
-
----
-
-## Create docker image
-Since Kubernetes requires Docker, you must use a docker registry. Official docker registry is available but you can also use your private docker registry.
-
-Our sample Dockerfile is available [here](https://github.com/drucker/dockerfiles).
+#### Add git ssh
+If you use a private git repository like GitHub enterprise, you need to add your credentials to `/root/.ssh/` on every cluster nodes. Rekcurd pod will mount the node's that volume to pod's `/root/.ssh`.
 
 ---
 
-## gRPC Load Balancing on Rancher
-We use [nghttpx Ingress Controller](https://github.com/zlabjp/nghttpx-ingress-lb) as gRPC load balancer. However we will replace it to [nginx ingress controller](https://github.com/kubernetes/ingress-nginx) after it supports nginx version 1.13.10 which supports http2 protocol on 80 port.
+## Docker image creation
+Kubernetes uses a container image. The simplest docker image is available on [Docker Hub](https://hub.docker.com/r/rekcurd/rekcurd) (`rekcurd/rekcurd:v0.2.1`).
 
-#### Disable Rancher Ingress Controller
+If you want to use your own docker image, please import our [Dockerfile](https://github.com/rekcurd/dockerfiles).
+
+---
+
+## Namespace creation
+We uses these namespace for Rekcurd. These values are also used as Kubernetes cluster node label.
+
+- development
+- staging
+- production
+- beta
+- sandbox
+
+### Install namespaces
+Apply the code below or upload them via "Kubernetes Dashboard".
+
+```bash
+$ cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: beta
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sandbox
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+EOF
+```
+
+---
+
+## gRPC Load Balancing
+Rancher's load balancer does not support gRPC protocol. We use [nghttpx Ingress Controller](https://github.com/zlabjp/nghttpx-ingress-lb) as gRPC load balancer. 
+
+### Disable Rancher Ingress Controller
 On Rancher dashboard
 
 1. Select "Manage Environments"
@@ -109,21 +152,17 @@ On Rancher dashboard
 1. Select "Edit Config"
 1. Set "Enable Rancher Ingress Controller" to "False"
 
-#### Boot nghttpx Ingress Controller
-1. "git clone" [nghttpx Ingress Controller](https://github.com/zlabjp/nghttpx-ingress-lb).
-1. Go to "Kubernetes Dashboard" via Rancher. Set "namespace" to "kube-system".
-1. Run below files by `kubectl` or apply them on Kubernetes dashboard.
+### Install nghttpx Ingress Controller
+Apply the files below or upload the files via "Kubernetes Dashboard".
 
 ```bash
-$ kubectl apply -f ./examples/default-backend.yaml
-$ kubectl apply -f ./examples/default-backend-svc.yaml
-$ kubectl apply -f ./examples/service-account.yaml
-$ kubectl apply -f ./examples/as-daemonset.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/default-backend.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/default-backend-svc.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/default/service-account.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/daemonset/as-daemonset.yaml
 ```
 
 ---
 
-## Setup fluentd
-[fluentd](https://github.com/fluent/fluentd-kubernetes-daemonset) is officially available on Kubernetes. You can forward the log messages to the server you specify just printing it to stdout/stderr.
-
----
+## fluentd installation
+We uses [fluentd](https://github.com/fluent/fluentd-kubernetes-daemonset) to aggregate the logs. After installing "fluentd daemonset" on Kubernetes, you can forward the logs to the server you specify by printing to stdout/stderr.
