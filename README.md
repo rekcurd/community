@@ -22,7 +22,7 @@ Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd
   - Log forwarding *
   - Easy to integrate into the existing service
 
-* Control Kubernetes functions
+*Kubernetes features
 
 
 ## Components
