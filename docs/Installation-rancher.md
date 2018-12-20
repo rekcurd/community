@@ -6,16 +6,17 @@ Table of Contents.
 1. [gRPC Load Balancing](#grpc-load-balancing)
 1. [fluentd installation](#fluentd-installation)
 
----
-
-## Rancher installation
-This section is the setup manual for [Rancher](https://rancher.com/) version 1.6. You can follow the official guide [here](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/). If you want to install Rancher version 2.x, you can follow the guide [here](https://rancher.com/docs/rancher/v2.x/en/installation/). We recommend to use Rancher 2.x.
-
-### Environments
+## Prerequisites
 - CentOS 7.4
 - Rancher 1.6.16
 - Docker 17.03
 - MySQL 5.7
+- (Option) kubectl 1.12.2
+
+---
+
+## Rancher installation
+This section is the setup manual for [Rancher](https://rancher.com/) version 1.6. You can follow the official guide [here](https://rancher.com/docs/rancher/v1.6/en/installing-rancher/installing-server/). If you want to install Rancher version 2.x, you can follow the guide [here](https://rancher.com/docs/rancher/v2.x/en/installation/). We recommend to use Rancher 2.x.
 
 ### HA configurations
 #### Rancher server specs
