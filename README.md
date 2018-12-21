@@ -11,15 +11,15 @@ Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd
   - Versioning ML models
   - Evaluate the accuracy of ML model and visualize it (TBD)
   - Switching ML model to the ML module
-  - Non stop deployment (a.k.a Rolling update) *
+  - Non stop deployment (a.k.a Rolling update)*
 - Free from monitoring
-  - Health check and auto healing *
-  - Load balancing and auto scaling *
+  - Health check and auto healing*
+  - Load balancing and auto scaling*
 - Others
   - WebUI available
-  - Service level (development/staging/production) management *
+  - Service level (development/staging/production) management*
   - AB testing and canary release (TBD)
-  - Log forwarding *
+  - Log forwarding*
   - Easy to integrate into the existing service
 
 *Kubernetes features
