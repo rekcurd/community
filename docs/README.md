@@ -1,4 +1,4 @@
-# Installation
+# Get Started
 - [Setup Kubernetes](./setup-kubernetes.md)
   - [Rancher Kubernetes](./Installation-rancher.md)
   - [kubeadm Kubernetes](./Installation-kubeadm.md)

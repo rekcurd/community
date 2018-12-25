@@ -52,7 +52,7 @@ Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd
 - (If necessary) Private git repository (e.g. GitHub Enterprise, GitLab, ...)
 
 
-## Installation
+## Get Started
 See [docs](./docs/).
 
 
