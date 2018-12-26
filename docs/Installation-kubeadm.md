@@ -1,4 +1,4 @@
-# Setup Kubernetes with kubeadm
+# Setup Drucker Environment with kubeadm
 ## Prerequisites
 1. This guide is tested on CentOS 7.4. Please check the [official guide](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) if you're using other OS like Ubuntu.
 2. Ensure the account has sudo privileges to run commands below.
