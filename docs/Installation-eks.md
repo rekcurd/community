@@ -1,12 +1,11 @@
-# Setup Drucker Environment with Amazon EKS
-## Setup Kubernetes with Amazon EKS
-### Environments
+# Setup Kubernetes with Amazon EKS
+## Environments
 * EKS version: eks.3
 * Kubernetes version: 1.10
 * Drucker version: 0.4.2
 * Drucker Dashboard version: 0.3.8
 
-### Steps
+## Steps
 
 Basically, you just need to follow [the official document](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html).  
 The diffrences are:
@@ -15,7 +14,7 @@ The diffrences are:
 - You need to use [our YAML file](https://github.com/drucker/drucker-parent/blob/master/aws/config) for CloudFormation to launch your worker nodes in `Step 3: Launch and Configure Amazon EKS Worker Nodes`.  
   The details are in the section below.
 
-#### Edit and Upload YAML file to launch your worker nodes.
+### Edit and Upload YAML file to launch your worker nodes.
 1. If you run `git clone` with SSH when you use drucker, replace `REPLACE_YOUR_OWN_SSH_KEY` with your own SSH private key in [autoscaling-group.yaml](https://github.com/drucker/drucker-parent/blob/master/aws/config/autoscaling-group.yaml).  
    You can skip this step if you use public repository and run `git clone` with HTTPS
 2. Edit [env-list.txt](https://github.com/drucker/drucker-parent/blob/master/aws/config/env-list.txt).
@@ -41,14 +40,8 @@ $ kubectl create -f deploy/1.8+/
 ```
 
 ## Install Ingress controller
-### Prerequisites
-- Domain owned by you (set to load balancer)
-
-### Steps
 For now, you can only access drucker services nghttpx Ingress.  
-Please follow instructions below to set up nghttpx Ingress Controller.
-
-1. Run the commands
+Please run the commands below to set up nghttpx Ingress Controller.
 
 ```bash
 $ git clone -b release-0.35 https://github.com/zlabjp/nghttpx-ingress-lb.git
@@ -56,20 +49,3 @@ $ cd nghttpx-ingress-lb
 # ELB will be created in the same region as your EKS cluster
 $ kubectl apply -f examples/proxyproto/
 ```
-
-2. Register your domain in Route 53
-- Set up hosted zone in [Route 53 Hosted Zone](https://console.aws.amazon.com/route53/home) and register your domain
-- Create record set
-  - Name: `*.<your-domain>`
-  - Alias: `Yes`
-  - Alias Target: `domain name of ELB created by running the commands above`
-
-Then, http requests to `*.<your-domain>` will reach to your EKS cluster.
-
-## Drucker
-Please follow the Drucker part on this [page](https://github.com/drucker/drucker-parent/blob/master/docs/Installation.md) to install drucker and deploy your services.  
-
-When you add Kubernetes Host in drucker-dashboard, please refer the information.
-
-- DNS Name: domain name you set to LoadBalancer in [Install Ingress controller](https://github.com/rekcurd/drucker-parent/blob/master/docs/Installation-eks.md#install-ingress-controller)
-- Host Config File: the file you obtain by running `aws eks update-kubeconfig --name cluster_name` in [EKS official document](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html)
