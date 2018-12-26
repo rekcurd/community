@@ -1,7 +1,7 @@
 # Mount online storage
 Use your favorite (e.g. bare metal, AWS S3, GCS, WebDAV). This storage is used for storing the ML models. In our usage, we mount it on `/mnt/drucker-model` to every Kubernetes cluster nodes. Rekcurd pod will mount it to pod's `/mnt/drucker-model`.
 
-**If you set up k8s with Amazon EKS, CloudFormation will create a S3 bucket, so you can skip it.**
+**If you set up k8s with Amazon EKS, CloudFormation will create a S3 bucket, so you can skip this step.**
 
 ## How to mount AWS S3 volume
 ### Put your credentials
