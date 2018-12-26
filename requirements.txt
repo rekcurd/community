@@ -6,7 +6,7 @@ Flask==1.0.2
 PyYAML==3.12
 SQLAlchemy==1.2.7
 flask-sqlalchemy==2.3.2
-kubernetes==v5.0.0
+kubernetes==v8.0.0
 Flask-Testing==0.7.1
 Flask-Cors==3.0.4
 flask-restplus==0.11.0
