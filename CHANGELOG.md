@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.3.8](https://github.com/rekcurd/drucker-parent/tree/v0.3.8) (2018-12-26)
+[Full Changelog](https://github.com/rekcurd/drucker-parent/compare/v0.3.7...v0.3.8)
+
+**Merged pull requests:**
+
+- Update readme 20181219 [\#17](https://github.com/rekcurd/drucker-parent/pull/17) ([keigohtr](https://github.com/keigohtr))
+
 ## [v0.3.7](https://github.com/rekcurd/drucker-parent/tree/v0.3.7) (2018-11-28)
 [Full Changelog](https://github.com/rekcurd/drucker-parent/compare/v0.3.6...v0.3.7)
 
