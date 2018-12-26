@@ -1,24 +1,21 @@
 # Setup Drucker Environment with kubeadm
-## Setup Kubernetes with kubeadm
-### Prerequisites
+## Prerequisites
 1. This guide is tested on CentOS 7.4. Please check the [official guide](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) if you're using other OS like Ubuntu.
 2. Ensure the account has sudo privileges to run commands below.
 3. Only non-HA cluster(singler master cluster) is set up in this guide. Please refer to [this page](https://kubernetes.io/docs/setup/independent/high-availability/) if you need a HA cluster.
 4. Calico is run as the pod network add-on. Please follow the [official guide](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) if you prefer another network add-on.
 
-### Environments
+## Environments
 * Docker: 18.06.1.ce
 * kubeadm, kubectl, kubelet: 1.12.2
 
-### Steps
+## Steps
 Steps here are copied from Docker and Kubernetes offical sites. The details could be found in the following sites:
 * [Install Docker](https://docs.docker.com/install/linux/docker-ce/centos/)
 * [Install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
 * [Create a single master cluster with kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
 
-**Install and run Docker**
-
-
+### Install and run Docker
 ```bash
 $ sudo yum install -y yum-utils \
   device-mapper-persistent-data \
@@ -30,9 +27,7 @@ $ sudo yum install -y docker-ce
 $ sudo systemctl enable docker && sudo systemctl start docker
 ```
 
-**Install and run kubeadm**
-
-
+### Install and run kubeadm
 Read the `Before you begin` section on this [page](https://kubernetes.io/docs/setup/independent/install-kubeadm/) to check your environment and run:
 
 ```bash
@@ -49,9 +44,7 @@ $ sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 $ sudo systemctl enable kubelet && sudo systemctl start kubelet
 ```
 
-**Master initialization**
-
-
+### Master initialization
 Please run the following commands on the master node and keep the join command logged in `kubeadm init` command.
 ```bash
 # Run command below and save the join command in the logs
@@ -66,9 +59,7 @@ $ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernete
 $ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 ```
 
-**Joining your nodes**
-
-
+### Joining your nodes
 On each your node(non-master), run
 ```bash
 # Use the command saved in the last step
@@ -120,6 +111,3 @@ subjects:
     name: ingress
     namespace: kube-system
 ```
-
-## Drucker
-Please follow the Drucker part on this [page](https://github.com/drucker/drucker-parent/blob/master/docs/Installation.md) to install drucker and deploy your services.

@@ -1,4 +1,19 @@
-# Table of Contents
-1. [Tasks in Machine Learning](TasksInMachineLearning.md)
-1. [Architecture](Architecture.md)
-1. [Installation](Installation.md)
+# Get Started
+- [Setup Kubernetes](./setup-kubernetes.md)
+  - [Rancher Kubernetes](./Installation-rancher.md)
+  - [kubeadm Kubernetes](./Installation-kubeadm.md)
+  - GKE Kubernetes (TBD)
+  - EKS Kubernetes (TBD)
+  - Optional software
+    - [nghttpx-ingress-controller](https://github.com/zlabjp/nghttpx-ingress-lb): gRPC load balancer.
+    - [fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset): Log aggregation for Kubernetes.
+- [Setup namespace](./setup-namespace.md)
+- [Setup MySQL](./setup-mysql.md)
+- [Mount online storage](./mount-online-storage.md)
+- [Assign DNS](./assign-dns.md)
+- [Docker image](./docker-image-creation.md)
+- [SSH key](./ssh-key.md)
+- [Setup Rekcurd software](./setup-rekcurd.md)
+  - [Rekcurd](https://github.com/rekcurd/drucker)
+  - [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard)
+  - [Rekcurd-client](https://github.com/rekcurd/drucker-client)
