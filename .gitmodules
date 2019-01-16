@@ -1,27 +1,27 @@
 [submodule "drucker_client"]
 	path = drucker_client
 	url = https://github.com/rekcurd/drucker-client.git
-	branch = v0.4.4
+	branch = v0.4
 [submodule "drucker_dashboard"]
 	path = drucker_dashboard
 	url = https://github.com/rekcurd/drucker-dashboard.git
-	branch = v0.4.4
+	branch = v0.4
 [submodule "drucker"]
 	path = drucker
 	url = https://github.com/rekcurd/drucker.git
-	branch = v0.4.4
+	branch = v0.4
 [submodule "drucker_example"]
 	path = drucker_example
 	url = https://github.com/rekcurd/drucker-example.git
-	branch = v0.4.4
+	branch = v0.4
 [submodule "drucker-grpc-proto"]
 	path = drucker-grpc-proto
 	url = https://github.com/rekcurd/drucker-grpc-proto.git
-	branch = v0.4.4
+	branch = v0.4
 [submodule "dockerfiles"]
 	path = dockerfiles
 	url = https://github.com/rekcurd/dockerfiles.git
-	branch = v0.2.2
+	branch = v0.2
 [submodule "externals/fluentd-kubernetes-daemonset"]
 	path = externals/fluentd-kubernetes-daemonset
 	url = https://github.com/fluent/fluentd-kubernetes-daemonset.git
