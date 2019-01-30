@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.4.5](https://github.com/rekcurd/drucker-parent/tree/v0.4.5) (2019-01-30)
+[Full Changelog](https://github.com/rekcurd/drucker-parent/compare/v0.4.4...v0.4.5)
+
 ## [v0.4.4](https://github.com/rekcurd/drucker-parent/tree/v0.4.4) (2019-01-15)
 [Full Changelog](https://github.com/rekcurd/drucker-parent/compare/v0.3.8...v0.4.4)
 
