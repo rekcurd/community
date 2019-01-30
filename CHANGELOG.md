@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.4.4](https://github.com/rekcurd/drucker-parent/tree/v0.4.4) (2019-01-15)
+[Full Changelog](https://github.com/rekcurd/drucker-parent/compare/v0.3.8...v0.4.4)
+
+**Merged pull requests:**
+
+- Move test to `dashboard` repository [\#18](https://github.com/rekcurd/drucker-parent/pull/18) ([keigohtr](https://github.com/keigohtr))
+- add EKS installation document [\#16](https://github.com/rekcurd/drucker-parent/pull/16) ([yuki-mt](https://github.com/yuki-mt))
+
 ## [v0.3.8](https://github.com/rekcurd/drucker-parent/tree/v0.3.8) (2018-12-26)
 [Full Changelog](https://github.com/rekcurd/drucker-parent/compare/v0.3.7...v0.3.8)
 
