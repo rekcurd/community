@@ -1,4 +1,4 @@
-# Setup Drucker Environment with kubeadm
+# Setup Rekcurd Environment with kubeadm
 ## Prerequisites
 1. This guide is tested on CentOS 7.4. Please check the [official guide](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) if you're using other OS like Ubuntu.
 2. Ensure the account has sudo privileges to run commands below.
@@ -72,7 +72,7 @@ The `<master-ip>` could be replaced with the host name of the master node.
 If you lost the join command, use `kubeadm token create --print-join-command` on the master to get the join command but you might need to regenerate the token because the token only has 24-hour TTL. Please check the `kubeadm token` command [here](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/) for details.
 
 ## Install Ingress controller
-For now, you can only access drucker services nghttpx Ingress. Please follow instructions below to set up nghttpx Ingress Controller.
+For now, you can only access Rekcurd services nghttpx Ingress. Please follow instructions below to set up nghttpx Ingress Controller.
 
 ```bash
 $ kubectl apply -f https://raw.githubusercontent.com/zlabjp/nghttpx-ingress-lb/master/examples/default-backend.yaml
