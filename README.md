@@ -26,7 +26,7 @@ Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd
 
 
 ## Components
-- [Rekcurd](https://github.com/rekcurd/python-rekcurd): Project for serving ML module. This is a gRPC micro-framework and it can be used like [Flask](http://flask.pocoo.org/).
+- [Rekcurd](https://github.com/rekcurd/rekcurd-python): Project for serving ML module. This is a gRPC micro-framework and it can be used like [Flask](http://flask.pocoo.org/).
 - [Rekcurd-dashboard](https://github.com/rekcurd/dashboard): Project for managing ML model and deploying ML module. Any Rekcurd service is manageable. It can deploy the Rekcurd service to Kubernetes cluster.
 - [Rekcurd-client](https://github.com/rekcurd/python-client): Project for integrating ML module. Any Rekcurd service is connectable. It can connect the Rekcurd service on Kubernetes.
 

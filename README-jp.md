@@ -26,7 +26,7 @@ Rekcurdは機械学習モジュールの運用のためのソフトウェア群�
 
 
 ## Components
-- [Rekcurd](https://github.com/rekcurd/python-rekcurd): 機械学習モジュールの配信のためのプロジェクトです。gRPCのマイクロフレームワークで、[Flask](http://flask.pocoo.org/)のように使えます。
+- [Rekcurd](https://github.com/rekcurd/rekcurd-python): 機械学習モジュールの配信のためのプロジェクトです。gRPCのマイクロフレームワークで、[Flask](http://flask.pocoo.org/)のように使えます。
 - [Rekcurd-dashboard](https://github.com/rekcurd/dashboard): 機械学習モデルの管理と機械学習モジュールのデプロイのためのプロジェクトです。あらゆるRekcurdサービスを扱うことができます。またKubernetesと接続してサービスのデプロイ等ができます。
 - [Rekcurd-client](https://github.com/rekcurd/python-client): 機械学習モジュールの組み込みのためのプロジェクトです。あらゆるRekcurdサービスと接続できます。またKubernetes上のRekcurdと接続することもできます。
 
