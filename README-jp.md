@@ -1,4 +1,4 @@
-# Rekcurd-Parent
+# About Rekcurd projects
 <img src="./docs/img/logo.png" width="100">
 
 Rekcurdは機械学習モジュールの運用のためのソフトウェア群です。「機械学習モジュールの配信を簡単に」「機械学習モデルの管理と機械学習モジュールのデプロイを簡単に」「機械学習モジュールの組み込みを簡単に」というコンセプトで設計しています。RekcurdはKubernetesをサポートしています。

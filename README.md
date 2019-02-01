@@ -1,4 +1,4 @@
-# Rekcurd-Parent
+# About Rekcurd projects
 <img src="./docs/img/logo.png" width="100">
 
 Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd makes it "easy to serve ML module", "easy to manage ML model and deploy ML module" and "easy to integrate into the existing service". Rekcurd can be run on Kubernetes.
