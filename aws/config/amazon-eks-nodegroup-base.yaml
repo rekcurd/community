@@ -14,7 +14,7 @@ Parameters:
 
   ModelNodePath:
     Type: String
-    Default: /mnt/drucker-model
+    Default: /mnt/rekcurd-model
     Description: path where ML models are saved. It needs to match dashboard setting.
 
   NodeInstanceType:
@@ -288,7 +288,7 @@ Resources:
     Properties:
       Tags:
       - Key: 'Name'
-        Value: 'drucker-ml-model'
+        Value: 'rekcurd-ml-model'
 
 {{ASG}}
 
