@@ -106,10 +106,5 @@ ENV/
 # Mac OS temporary file
 .DS_Store
 
-# Drucker
-drucker_pb2.py
-drucker_pb2_grpc.py
-db.test.sqlite3
-test-kube-config/
-tests/drucker_dashboard/models/
+# Rekcurd
 config/amazon-eks-nodegroup.yaml

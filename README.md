@@ -1,4 +1,4 @@
-# Rekcurd-Parent
+# About Rekcurd projects
 <img src="./docs/img/logo.png" width="100">
 
 Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd makes it "easy to serve ML module", "easy to manage ML model and deploy ML module" and "easy to integrate into the existing service". Rekcurd can be run on Kubernetes.
@@ -26,14 +26,14 @@ Rekcurd is a software package of managing machine learning (ML) modules. Rekcurd
 
 
 ## Components
-- [Rekcurd](https://github.com/rekcurd/drucker): Project for serving ML module. This is a gRPC micro-framework and it can be used like [Flask](http://flask.pocoo.org/).
-- [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard): Project for managing ML model and deploying ML module. Any Rekcurd service is manageable. It can deploy the Rekcurd service to Kubernetes cluster.
-- [Rekcurd-client](https://github.com/rekcurd/drucker-client): Project for integrating ML module. Any Rekcurd service is connectable. It can connect the Rekcurd service on Kubernetes.
+- [Rekcurd](https://github.com/rekcurd/rekcurd-python): Project for serving ML module. This is a gRPC micro-framework and it can be used like [Flask](http://flask.pocoo.org/).
+- [Rekcurd-dashboard](https://github.com/rekcurd/dashboard): Project for managing ML model and deploying ML module. Any Rekcurd service is manageable. It can deploy the Rekcurd service to Kubernetes cluster.
+- [Rekcurd-client](https://github.com/rekcurd/python-client): Project for integrating ML module. Any Rekcurd service is connectable. It can connect the Rekcurd service on Kubernetes.
 
 ### Sub components
 - [dockerfiles](https://github.com/rekcurd/dockerfiles): Project for Rekcurd's container image. Since it works with [Docker Hub](https://hub.docker.com/r/rekcurd/rekcurd), you can pull image via `docker pull`.
-- [drucker-grpc-proto](https://github.com/rekcurd/drucker-grpc-proto): Project for Rekcurd's gRPC spec.
-- [Drucker-example](https://github.com/rekcurd/drucker-example): Example project. This sample turns a scikit-learn Linear SVC algorithm into a Rekcurd service.
+- [grpc-proto](https://github.com/rekcurd/grpc-proto): Project for Rekcurd's gRPC spec.
+- [Rekcurd-example](https://github.com/rekcurd/rekcurd-example): Example project. This sample turns a scikit-learn Linear SVC algorithm into a Rekcurd service.
 
 
 ## Environment

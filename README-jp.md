@@ -1,4 +1,4 @@
-# Rekcurd-Parent
+# About Rekcurd projects
 <img src="./docs/img/logo.png" width="100">
 
 Rekcurdは機械学習モジュールの運用のためのソフトウェア群です。「機械学習モジュールの配信を簡単に」「機械学習モデルの管理と機械学習モジュールのデプロイを簡単に」「機械学習モジュールの組み込みを簡単に」というコンセプトで設計しています。RekcurdはKubernetesをサポートしています。
@@ -26,14 +26,14 @@ Rekcurdは機械学習モジュールの運用のためのソフトウェア群�
 
 
 ## Components
-- [Rekcurd](https://github.com/rekcurd/drucker): 機械学習モジュールの配信のためのプロジェクトです。gRPCのマイクロフレームワークで、[Flask](http://flask.pocoo.org/)のように使えます。
-- [Rekcurd-dashboard](https://github.com/rekcurd/drucker-dashboard): 機械学習モデルの管理と機械学習モジュールのデプロイのためのプロジェクトです。あらゆるRekcurdサービスを扱うことができます。またKubernetesと接続してサービスのデプロイ等ができます。
-- [Rekcurd-client](https://github.com/rekcurd/drucker-client): 機械学習モジュールの組み込みのためのプロジェクトです。あらゆるRekcurdサービスと接続できます。またKubernetes上のRekcurdと接続することもできます。
+- [Rekcurd](https://github.com/rekcurd/rekcurd-python): 機械学習モジュールの配信のためのプロジェクトです。gRPCのマイクロフレームワークで、[Flask](http://flask.pocoo.org/)のように使えます。
+- [Rekcurd-dashboard](https://github.com/rekcurd/dashboard): 機械学習モデルの管理と機械学習モジュールのデプロイのためのプロジェクトです。あらゆるRekcurdサービスを扱うことができます。またKubernetesと接続してサービスのデプロイ等ができます。
+- [Rekcurd-client](https://github.com/rekcurd/python-client): 機械学習モジュールの組み込みのためのプロジェクトです。あらゆるRekcurdサービスと接続できます。またKubernetes上のRekcurdと接続することもできます。
 
 ### Sub components
 - [dockerfiles](https://github.com/rekcurd/dockerfiles): Rekcurdのためのベースイメージです。[Docker Hub](https://hub.docker.com/r/rekcurd/rekcurd)と連携しているので、`docker pull`でイメージを使うことも出来ます。
-- [drucker-grpc-proto](https://github.com/rekcurd/drucker-grpc-proto): Rekcurdが使うgRPC specです。
-- [Drucker-example](https://github.com/rekcurd/drucker-example): Rekcurdのサンプルです。サンプルではscikit-learnのLinear SVCをRekcurdサービスにしています。
+- [grpc-proto](https://github.com/rekcurd/grpc-proto): Rekcurdが使うgRPC specです。
+- [Rekcurd-example](https://github.com/rekcurd/rekcurd-example): Rekcurdのサンプルです。サンプルではscikit-learnのLinear SVCをRekcurdサービスにしています。
 
 
 ## Environment
