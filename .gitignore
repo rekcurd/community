@@ -107,9 +107,4 @@ ENV/
 .DS_Store
 
 # Rekcurd
-rekcurd_pb2.py
-rekcurd_pb2_grpc.py
-db.test.sqlite3
-test-kube-config/
-tests/rekcurd_dashboard/models/
 config/amazon-eks-nodegroup.yaml
