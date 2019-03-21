@@ -63,30 +63,24 @@ Initial release. This version is a Minimal Viable Software.
 ### v0.4
 - Pipnize
 
-### v1.0
-- Access control
+### v1.0 (Upcomming)
 - User authentication
-- ML model evaluation and visualization
 - Rancher/GCP/AWS installation support
-- Unittest and Travis support
-
-### v2.0
-- C++/Java support
 - Istio support
-- Traffic tracing
-- AB test/Canary release
-- Access control (Access token)
-- ML evaluation model management and versioning
-- GPU support
-- Kubeflow support
+- AB testing
 - Airflow support
-- GitOps support
+- Image/Git driven boot option
+- Travis CI
 
-### v3.0
-- Security
-
-### vX.Y
-- Open platform (e.g. marketplace)
+### v1.x
+- ML model evaluation and visualization
+- QA data management and versioning
+- C++/Java support
+- Traffic tracing
+- Canary release
+- Access token
+- GPU support
+- Kubeflow (Katib) support
 
 
 ## Support
