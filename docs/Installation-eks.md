@@ -2,8 +2,8 @@
 ## Environments
 * EKS version: eks.3
 * Kubernetes version: 1.10
-* Rekcurd version: 0.4.2
-* Rekcurd dashboard version: 0.3.8
+* Rekcurd version: 1.0.0
+* Rekcurd dashboard version: 1.0.0
 
 ## Steps
 
@@ -37,15 +37,4 @@ $ git clone https://github.com/kubernetes-incubator/metrics-server.git
 $ cd metrics-server
 $ git checkout refs/tags/v0.3.1
 $ kubectl create -f deploy/1.8+/
-```
-
-## Install Ingress controller
-For now, you can only access Rekcurd services nghttpx Ingress.  
-Please run the commands below to set up nghttpx Ingress Controller.
-
-```bash
-$ git clone -b release-0.35 https://github.com/zlabjp/nghttpx-ingress-lb.git
-$ cd nghttpx-ingress-lb
-# ELB will be created in the same region as your EKS cluster
-$ kubectl apply -f examples/proxyproto/
 ```

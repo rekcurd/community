@@ -1,9 +1,8 @@
 # Setup Kubernetes
-- [Rancher Kubernetes](./Installation-rancher.md)
-- [kubeadm Kubernetes](./Installation-kubeadm.md)
+- [Rancher Kubernetes](https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/)
+- [kubeadm Kubernetes](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
 - GKE Kubernetes (TBD)
-- EKS Kubernetes (TBD)
+- [EKS Kubernetes](./Installation-eks.md)
 
 ## Optional software
-- [nghttpx-ingress-controller](https://github.com/zlabjp/nghttpx-ingress-lb): gRPC load balancer.
 - [fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset): Log aggregation for Kubernetes.
