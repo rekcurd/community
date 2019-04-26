@@ -1,18 +1,12 @@
 # Get Started
 - [Setup Kubernetes](./setup-kubernetes.md)
-  - [Rancher Kubernetes](./Installation-rancher.md)
-  - [kubeadm Kubernetes](./Installation-kubeadm.md)
+  - [Rancher Kubernetes](https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/)
+  - [kubeadm Kubernetes](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
   - GKE Kubernetes (TBD)
   - [EKS Kubernetes](./Installation-eks.md)
   - Optional software
-    - [nghttpx-ingress-controller](https://github.com/zlabjp/nghttpx-ingress-lb): gRPC load balancer.
     - [fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset): Log aggregation for Kubernetes.
-- [Setup namespace](./setup-namespace.md)
-- [Setup MySQL](./setup-mysql.md)
-- [Mount online storage](./mount-online-storage.md)
-- [Assign DNS](./assign-dns.md)
-- [Docker image](./docker-image-creation.md)
-- [SSH key](./ssh-key.md)
+- [Setup Istio](./setup-istio.md)
 - [Setup Rekcurd software](./setup-rekcurd.md)
   - [Rekcurd](https://github.com/rekcurd/rekcurd-python)
   - [Rekcurd-dashboard](https://github.com/rekcurd/dashboard)
