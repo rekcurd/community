@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.0.0](https://github.com/rekcurd/community/tree/v1.0.0) (2019-04-26)
+[Full Changelog](https://github.com/rekcurd/community/compare/v0.4.5...v1.0.0)
+
+**Closed issues:**
+
+- Automation for a license agreement [\#5](https://github.com/rekcurd/community/issues/5)
+
+**Merged pull requests:**
+
+- Update documents [\#20](https://github.com/rekcurd/community/pull/20) ([keigohtr](https://github.com/keigohtr))
+- Rename repository link [\#19](https://github.com/rekcurd/community/pull/19) ([keigohtr](https://github.com/keigohtr))
+
 ## [v0.4.5](https://github.com/rekcurd/community/tree/v0.4.5) (2019-01-30)
 [Full Changelog](https://github.com/rekcurd/community/compare/v0.4.4...v0.4.5)
 
