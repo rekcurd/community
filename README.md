@@ -52,7 +52,7 @@ Give us **Star**, **Issues** and **Pull requests**!
 
 - [Twitter](https://twitter.com/rekcurd)
 - [Facebook](https://www.facebook.com/rekcurd/)
-- [Slack](https://rekcurd.slack.com/)
+- [Slack](https://join.slack.com/t/rekcurd/shared_invite/enQtNTA4NDU3ODAzMzgwLTVhNWYyMTUwOTQ2NGZjMzAzNzYzNTZlZDYzY2ViMjVlOWExY2EwYmRlMDhhMDE3ZmNlNGE2Nzk4NTYzZjAwOTM)
 - [Google group](https://groups.google.com/forum/?hl=ja#!forum/rekcurd-dev)
 
 
