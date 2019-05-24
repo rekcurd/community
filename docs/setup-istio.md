@@ -12,6 +12,8 @@ $ export KUBECONFIG=$YOUR_KUBE_CONFIG_PATH
 ```
 
 ## Set label to node servers
+**Skip this step if you build cluster by following [EKS setup](./Installation-eks.md)**
+
 ```bash
 $ kubectl label nodes <node-name> host=development
 $ kubectl label nodes <node-name> host=staging

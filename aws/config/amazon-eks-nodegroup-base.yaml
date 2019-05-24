@@ -283,13 +283,6 @@ Resources:
       ToPort: 443
       FromPort: 443
 
-  ModelStorage:
-    Type: 'AWS::S3::Bucket'
-    Properties:
-      Tags:
-      - Key: 'Name'
-        Value: 'rekcurd-ml-model'
-
 {{ASG}}
 
 Outputs:
