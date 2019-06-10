@@ -3,9 +3,10 @@
   - [Rancher Kubernetes](https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/)
   - [kubeadm Kubernetes](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
   - GKE Kubernetes (TBD)
-  - [EKS Kubernetes](./Installation-eks.md)
+  - [EKS Kubernetes](./setup-eks.md)
   - Optional software
     - [fluentd-kubernetes-daemonset](https://github.com/fluent/fluentd-kubernetes-daemonset): Log aggregation for Kubernetes.
+- [Setup Metrics Server](./setup-metrics-server.md)
 - [Setup Istio](./setup-istio.md)
 - [Setup Rekcurd software](./setup-rekcurd.md)
   - [Rekcurd](https://github.com/rekcurd/rekcurd-python)
