@@ -1,5 +1,13 @@
 # Change Log
 
+## [v1.0.1](https://github.com/rekcurd/community/tree/v1.0.1)
+
+[Full Changelog](https://github.com/rekcurd/community/compare/v1.0.0...v1.0.1)
+
+**Merged pull requests:**
+
+- fix documents for EKS [\#21](https://github.com/rekcurd/community/pull/21) ([yuki-mt](https://github.com/yuki-mt))
+
 ## [v1.0.0](https://github.com/rekcurd/community/tree/v1.0.0) (2019-04-26)
 [Full Changelog](https://github.com/rekcurd/community/compare/v0.4.5...v1.0.0)
 
@@ -55,6 +63,7 @@
 **Merged pull requests:**
 
 - Cleanup a test DB [\#9](https://github.com/rekcurd/community/pull/9) ([keigohtr](https://github.com/keigohtr))
+- Add sandbox env \(just comment change\) [\#7](https://github.com/rekcurd/community/pull/7) ([keigohtr](https://github.com/keigohtr))
 
 ## [v0.3.3](https://github.com/rekcurd/community/tree/v0.3.3) (2018-08-29)
 [Full Changelog](https://github.com/rekcurd/community/compare/v0.3.2...v0.3.3)
@@ -62,7 +71,6 @@
 **Merged pull requests:**
 
 - Add test of `dashboard` PR\#7 [\#8](https://github.com/rekcurd/community/pull/8) ([keigohtr](https://github.com/keigohtr))
-- Add sandbox env \(just comment change\) [\#7](https://github.com/rekcurd/community/pull/7) ([keigohtr](https://github.com/keigohtr))
 - Add dashboard tests [\#6](https://github.com/rekcurd/community/pull/6) ([jkw552403](https://github.com/jkw552403))
 
 ## [v0.3.2](https://github.com/rekcurd/community/tree/v0.3.2) (2018-08-22)
